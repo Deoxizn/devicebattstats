@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "id": "dev.deoxizn.devicebattstats",
+  "name": "Device Battery Stats",
+  "version": "1.0.0",
+  "author": "Deoxizn",
+  "license": "MIT",
+  "description": "Battery and charging status for Bluetooth and 2.4GHz wireless devices.",
+  "kinds": ["service", "bar-widget"],
+  "keepLoaded": true,
+  "entryPoints": {
+    "barWidget": "qml/BarWidget.qml",
+    "service": "qml/Service.qml"
+  },
+  "barWidget": {
+    "displayName": "Device battery",
+    "description": "Wireless device battery levels with a details panel",
+    "category": "System",
+    "defaultSection": "right",
+    "allowMultiple": false
+  }
+}
