@@ -103,7 +103,6 @@ running. If you want to re-theme the widget globally, edit `HostTokens.qml`:
 devicebattstats/
 ├── manifest.json          plugin manifest (kinds: service, bar-widget)
 ├── README.md
-├── .gitignore
 ├── qml/
 │   ├── BarWidget.qml      bar-widget entry point (pill + popup host)
 │   ├── Service.qml        service entry point (poller process, shared state)
