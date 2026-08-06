@@ -23,26 +23,6 @@ covered too, as are **Razer** wireless peripherals through python-openrazer.
 - Polls only while a widget is mounted (no background churn)
 - Graceful degradation: works with whatever subset of tools is installed
 
-## What it looks like
-
-> Screenshots live in `docs/screenshots/` once you drop them in. To capture
-> yours: `grim -g "<bar region>" docs/screenshots/bar.png`.
-
-```
- [ ⌨ 🖱 ]             ← pill on the bar: one glyph per connected device
- [ ⌁ 90% ]            ← ...or `displayMode: "full"` (battery glyph + lowest %)
-```
-
-Clicking the pill opens the panel:
-
-```
- ┌────────────────────────────────┐
- │  WIRELESS BATTERIES     2 dev  │
- │  ⌨ Keychron Q6 Max   90% ▁▃▅█  │
- │  🖱 Razer Naga V2 Pro 99% ▁▃▅█  │
- └────────────────────────────────┘
-```
-
 ## Data sources
 
 `scripts/device-battery.sh` emits one JSON document per run, aggregating with
@@ -69,58 +49,12 @@ Environment variables:
 
 ## Install
 
-From a git remote (the normal way):
-
 ```sh
 omarchy plugin add https://github.com/Deoxizn/devicebattstats.git --enable
 ```
 
-`omarchy plugin add` clones the repo into `~/.config/omarchy/plugins/`, runs
-`omarchy-plugin-validate` on it (refusing anything that fails), then installs
-and enables the widget in the right section of the bar. You'll be asked to
-confirm before anything runs.
-
-> The URL above is the repo this project is published to; if you installed from
-> a fork or a mirror, use your own URL.
-
-The plugin is a `service` + `bar-widget`; the service keeps polling only while
-a widget is mounted (every 30 seconds by default).
-
-Enable it later, without reinstalling:
-
-```sh
-omarchy plugin enable dev.deoxizn.devicebattstats
-```
-
-To enable it manually, add the plugin id to a bar layout entry in
-`~/.config/omarchy/shell.json` (or use `omarchy shell edit`):
-
-```json
-{ "id": "dev.deoxizn.devicebattstats" }
-```
-
-## Development
-
-Work against the live shell by symlinking this checkout into the plugins dir:
-
-```sh
-ln -s "$PWD" ~/.config/omarchy/plugins/dev.deoxizn.devicebattstats
-```
-
-The shell picks up changes on restart. Before you push, sanity-check the
-folder with the same validator the installer uses:
-
-```sh
-omarchy-plugin-validate .
-```
-
-To switch from a dev symlink to the git-managed install (so `omarchy plugin
-update` works), remove the symlink once, then add from the remote:
-
-```sh
-rm ~/.config/omarchy/plugins/dev.deoxizn.devicebattstats
-omarchy plugin add https://github.com/Deoxizn/devicebattstats.git --enable
-```
+`omarchy plugin add` clones the repo, validates it, and enables the widget in
+the right section of the bar.
 
 ## Widget settings
 
@@ -169,7 +103,6 @@ running. If you want to re-theme the widget globally, edit `HostTokens.qml`:
 devicebattstats/
 ├── manifest.json          plugin manifest (kinds: service, bar-widget)
 ├── README.md
-├── LICENSE                MIT (c) 2026 Deoxizn
 ├── .gitignore
 ├── qml/
 │   ├── BarWidget.qml      bar-widget entry point (pill + popup host)
@@ -194,7 +127,3 @@ devicebattstats/
 - The popup is a `Ui.Panel` + `KeyboardPanel`. On the Shibumi bar the host's
   `WidgetSlot` hosted-panel adapter repaints the card with Shibumi chrome
   automatically.
-
-## License
-
-MIT © 2026 Deoxizn. See [LICENSE](LICENSE).
