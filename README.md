@@ -10,6 +10,14 @@ battery through the kernel's `power_supply` class but never show up in BlueZ.
 **Bluetooth** keyboards and mice that expose a battery via BlueZ `Battery1` are
 covered too, as are **Razer** wireless peripherals through python-openrazer.
 
+<p align="center">
+  <img src="topbar.png" alt="Bar pill showing one glyph per connected device" />
+</p>
+
+<p align="center">
+  <img src="bottompanel.png" alt="Device details popup" />
+</p>
+
 ## Features
 
 - Bar pill showing one glyph per connected device (keyboard, mouse, ...); the
